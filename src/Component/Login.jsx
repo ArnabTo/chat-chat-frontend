@@ -1,9 +1,11 @@
 import axios from 'axios';
 import '../App.css'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [token, setToken] = useState();
+    const navigate = useNavigate();
     const handleLogin =(e) =>{
         e.preventDefault();
         const form = e.target;
@@ -14,7 +16,10 @@ const Login = () => {
         axios.post('http://localhost:4005/api/user/login', {email: email, password: password})
         .then((res)=> {
             setToken(res?.data?.token)
-            console.log(res)})
+            console.log(res)
+            localStorage.setItem('userdata', JSON.stringify(res.data));
+            navigate('/');
+        })
         .catch((err) => console.log(err))
     }
     return (
