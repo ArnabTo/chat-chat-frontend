@@ -18,7 +18,8 @@ const Login = () => {
             setToken(res?.data?.token)
             console.log(res)
             localStorage.setItem('userdata', JSON.stringify(res.data));
-            navigate('/');
+            navigate('/chat');
+            window.location.reload();
         })
         .catch((err) => console.log(err))
     }
@@ -45,9 +46,6 @@ const Login = () => {
                                 <span className="label-text text-white">Password</span>
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" required />
-                            {/* <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label> */}
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>

@@ -10,6 +10,7 @@ import Login from './Component/Login.jsx';
 import SignUp from './Component/SignUp.jsx';
 import Chat from './Component/Chat/Chat.jsx';
 import Home from './Component/Home/Home.jsx';
+import PrivateRoute from './Component/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,11 +19,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home/>
+        element: <Home/>,
       },
       {
         path: 'chat',
-        element: <Chat/>
+        element: <PrivateRoute><Chat/></PrivateRoute>
       },
       {
         path: 'login',

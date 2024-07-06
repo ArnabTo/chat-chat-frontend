@@ -2,11 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+:root{
     background: url('./assets/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
 }
-  
-  
