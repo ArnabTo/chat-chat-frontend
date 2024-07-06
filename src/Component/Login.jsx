@@ -13,7 +13,7 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password)
 
-        axios.post('http://localhost:4005/api/user/login', {email: email, password: password})
+        axios.post('http://localhost:5000/api/user/login', {email: email, password: password})
         .then((res)=> {
             setToken(res?.data?.token)
             console.log(res)

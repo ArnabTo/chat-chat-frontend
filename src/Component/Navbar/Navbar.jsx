@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const [userData, setUserData] = useState();
-    const [loading, setLoading] = useState(false);
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const navigator = useNavigate();
+
     useEffect(() => {
-        setLoading(true);
         const storageData = localStorage.getItem('userdata');
 
         if (storageData) {
@@ -12,15 +14,27 @@ const Navbar = () => {
             setUserData(parsedData)
         }
         setLoading(false);
-    }, [setUserData])
+
+    }, [userData])
 
     console.log(userData)
 
+    const handleSignout = () => {
+        setUserData(null)
+        localStorage.removeItem('userdata');
+        navigator('/login')
+    }
+
+
     return (
-        <div className="bg-white py-5">
+        <div className="bg-white py-5 shadow-lg shadow-black">
             <div className="max-w-7xl mx-auto">
                 <div className="flex justify-between items-center">
-                    <div><p className="text-5xl font-black text-green-500">Chat-Chat</p></div>
+                    <div>
+                        <a href="/">
+                            <p className="text-5xl font-black text-green-500">Chat-Chat</p>
+                        </a>
+                    </div>
                     <div>
                         {
                             userData ?
@@ -35,11 +49,12 @@ const Navbar = () => {
                                                         <p className="text-black text-lg font-semibold">{userData?.email}</p>
                                                     </span>
                                                 </div>
-                                                <button className="bg-black text-white px-6 py-3 rounded-md text-lg font-bold">Sign Out</button>
+                                                <button onClick={handleSignout} className="bg-black text-white px-6 py-3 rounded-md text-lg font-bold">Sign Out</button>
                                             </div>
                                     }
-                                </div> :
-                                <button className="bg-black text-white px-6 py-3 rounded-md text-lg font-bold">Sign Out</button>
+                                </div>
+                                :
+                                <a href="/login">   <button className="bg-black text-white px-6 py-3 rounded-md text-lg font-bold">Sign In</button></a>
                         }
                     </div>
                 </div>

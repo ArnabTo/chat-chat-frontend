@@ -31,7 +31,7 @@ const SignUp = () => {
         }
         console.log(userDate)
 
-        axios.post('http://localhost:4005/api/user', {
+        axios.post('http://localhost:5000/api/user', {
             name: name,
             email: email,
             password: password,

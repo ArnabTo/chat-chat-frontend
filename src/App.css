@@ -2,9 +2,6 @@ body{
   background: url('./assets/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-}
-.login_Page{
-  background-color: red;
+  height: screen;
 }
 
